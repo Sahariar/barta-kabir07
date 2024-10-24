@@ -5,9 +5,7 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [PostController::class, 'index'])->name('home');
 // user Profile
 Route::get('/profile', function () {
     return view('user.profile');
@@ -29,3 +27,4 @@ Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');;
 Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class);
 });
+
