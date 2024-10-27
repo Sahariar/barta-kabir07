@@ -12,16 +12,11 @@ class Card extends Component
      * Create a new component instance.
      */
 
-    public $content;
-    public $user;
-    public $username;
+    public $post;
 
-    public function __construct($content, $user, $username)
+    public function __construct($post)
     {
-        //
-        $this->content = $content;
-        $this->user = $user;
-        $this->username = $username;
+        $this->post = $post;
     }
 
     /**

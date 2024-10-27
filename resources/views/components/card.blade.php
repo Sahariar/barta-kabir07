@@ -1,4 +1,5 @@
             <!-- Barta Card -->
+
             <article class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6">
                 <!-- Barta Card Top -->
                 <header>
@@ -16,11 +17,11 @@
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                 <a href="profile" class="hover:underline font-semibold line-clamp-1">
-                                    {{ $user }}
+                                    {{ $post->user->name }}
                                 </a>
 
                                 <a href="profile" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                    {{ $username }}
+                                    {{ $post->user->username }}
                                 </a>
                             </div>
                             <!-- /User Info -->
@@ -47,9 +48,12 @@
                                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                     role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                     tabindex="-1">
-                                    <a href="{{ route('posts.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                    <a href="{{ route('posts.edit' , $post) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1">Edit</a>
+                                    <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</button>
+                                        </form>
                                 </div>
                             </div>
 
@@ -60,9 +64,11 @@
 
                 <!-- Content -->
                 <div class="py-4 text-gray-700 font-normal">
+                    <a href="{{ route('posts.show' , $post) }}">
                     <p>
-                        {{ $content }}
+                        {{ $post->content }}
                     </p>
+                    </a>
                 </div>
 
                 <!-- Date Created & View Stat -->
@@ -147,5 +153,7 @@
                 <!--            &lt;!&ndash; /Card Bottom Action Buttons &ndash;&gt;-->
                 <!--          </footer>-->
                 <!-- /Barta Card Bottom -->
+
             </article>
+
             <!-- /Barta Card -->

@@ -126,9 +126,8 @@
             @foreach ($posts as $post)
                 <div class="col-md-4">
                     <x-card
-                        :content="$post->content"
-                        :user="$post->user->name"
-                        :username="$post->user->username"/>
+                        :post="$post"
+                        />
                 </div>
             @endforeach
 
