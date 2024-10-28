@@ -19,6 +19,7 @@ class PostFactory extends Factory
     {
         return [
         'content' => fake()->paragraph(),
+        'post_picture'=>'post_picture/SZ2NyraBvgaM69vCs0DFHK304aadyxm81tcNXDfB.png',
         'user_id' => User::factory(),
         ];
     }
