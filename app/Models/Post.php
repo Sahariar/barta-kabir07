@@ -11,6 +11,7 @@ class Post extends Model
 
     protected $fillable = [
         'content',
+        'post_picture',
         'user_id'
     ];
         // Define the relationship with the User model

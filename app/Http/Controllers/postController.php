@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -33,10 +34,20 @@ class PostController extends Controller
     {
         //
         $request->validate([
-            'content' => 'required'
+            'content' => 'required',
+            'post_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+        // Handle the file upload
+        if ($request->hasFile('post_picture')) {
+            $postPicture = $request->file('post_picture');
+            $postPicturePath = $postPicture->store('post_picture', 'public'); // Store in 'storage/app/public/post_picture'
+        } else {
+            $postPicturePath = null;
+        }
+
         Post::create([
             'content' => $request->content,
+            'post_picture'=> $postPicturePath,
             'user_id' => Auth::id(),
         ]);
 
@@ -82,11 +93,28 @@ class PostController extends Controller
         }
 
         $request->validate([
-            'content' => 'required'
+            'content' => 'required',
+            'post_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
+
+        // Handle file upload for profile picture
+        if ($request->hasFile('post_picture')) {
+            if ($post->post_picture) {
+                // Delete the old profile picture if it exists
+                Storage::disk('public')->delete($post->post_picture);
+            }
+
+            // Store the new profile picture
+            $postPicturePath = $request->file('post_picture')->store('post_pictures', 'public');
+            $validatedData['post_picture'] = $postPicturePath;
+        } else {
+            // Remove post_picture from validated data if no new file is uploaded
+            unset($validatedData['post_picture']);
+        }
 
         $post->update([
             'content' => $request->content,
+            'post_picture'=> $postPicturePath,
         ]);
 
         return redirect()->route('home')->with('success', 'Post created successfully.');

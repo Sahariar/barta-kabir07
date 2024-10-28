@@ -17,6 +17,22 @@ class RegisterUserController extends Controller
     {
         return view('register');
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        // $users = USER::where('username','LIKE',"%{query}%")
+        // ->orWhere('name','LIKE',"%{query}%")
+        // ->orWhere('email','LIKE',"%{query}%")
+        // ->get();
+
+            $users = User::whereRaw('LOWER(username) LIKE ?', ["%{$query}%"])
+        ->orWhereRaw('LOWER(name) LIKE ?', ["%{$query}%"])
+        ->orWhereRaw('LOWER(email) LIKE ?', ["%{$query}%"])
+        ->get();
+
+        return view('user.search_results', compact('users'));
+    }
 
     public function store(Request $request)
     {

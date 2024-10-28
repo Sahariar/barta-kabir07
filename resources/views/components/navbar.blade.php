@@ -18,6 +18,15 @@
                     <a href="#"
                         class="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-600 hover:border-gray-300 hover:text-gray-800">People</a>
                 </div>
+                <div class="hidden sm:ml-8 sm:flex sm:space-x-8">
+                    <!-- resources/views/users/search.blade.php -->
+            <form action="{{ route('profile.search') }}" method="GET" class="inline-flex items-center px-1 pt-1 text-sm font-semibold text-gray-900">
+                <input type="text" name="query" placeholder="Search by username, full name, or email" required class="border-b-2 border-gray-800 p-2">
+                <button type="submit">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M15 10.5C15 12.9853 12.9853 15 10.5 15C8.01472 15 6 12.9853 6 10.5C6 8.01472 8.01472 6 10.5 6C12.9853 6 15 8.01472 15 10.5ZM14.1793 15.2399C13.1632 16.0297 11.8865 16.5 10.5 16.5C7.18629 16.5 4.5 13.8137 4.5 10.5C4.5 7.18629 7.18629 4.5 10.5 4.5C13.8137 4.5 16.5 7.18629 16.5 10.5C16.5 11.8865 16.0297 13.1632 15.2399 14.1792L20.0304 18.9697L18.9697 20.0303L14.1793 15.2399Z" fill="#080341"></path> </g></svg>
+                </button>
+            </form>
+                </div>
             </div>
             <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
                 <!-- This Button Should Be Hidden on Mobile Devices -->

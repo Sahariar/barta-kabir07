@@ -20,7 +20,7 @@ Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register');
 Route::get('/login', [SessionController::class, 'create']);
 Route::post('/login', [SessionController::class, 'store']);
-Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');;
+Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
 
 
 // Posts
@@ -28,3 +28,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('posts', PostController::class);
 });
 
+// Search Route
+Route::get('/profile/search', [RegisterUserController::class, 'search'])->name('profile.search');

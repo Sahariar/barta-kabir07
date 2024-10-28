@@ -64,6 +64,9 @@
 
                 <!-- Content -->
                 <div class="py-4 text-gray-700 font-normal">
+                    @if($post->post_picture !== null)
+                    <img class="h-8 w-8 rounded-full" src="{{ asset('storage/' . $post->post_picture) }}" />
+                    @endif
                     <a href="{{ route('posts.show' , $post) }}">
                     <p>
                         {{ $post->content }}

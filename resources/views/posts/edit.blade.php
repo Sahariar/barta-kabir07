@@ -11,12 +11,13 @@
         @endif
     <!-- Barta Create Post Card -->
     <form action="{{ route('posts.update', $post->id) }}" method="POST"
-        class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3">
+        class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3"
+        enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <!-- Create Post Card Top -->
         <div>
-            <div class="flex items-start /space-x-3/">
+            <div class=" items-start /space-x-3/">
                 <!-- User Avatar -->
                 <!--            <div class="flex-shrink-0">-->
                 <!--              <img-->
@@ -33,7 +34,12 @@
                         name="content" id="content" rows="2" placeholder="{{ $post->content }}?"></textarea>
 
                 </div>
-
+                <!-- Post Picture -->
+                <div>
+                    <div class="mt-2">
+                        <input type="file" name="post_picture" id="post_picture"  class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" required value="{{ asset('storage/' . $post->post_picture) }}" >
+                    </div>
+                </div>
             </div>
         </div>
 

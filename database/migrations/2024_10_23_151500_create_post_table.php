@@ -12,11 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         // Drop the 'post' table if it exists
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('posts');
 
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->text('content');
+            $table->string('post_picture')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

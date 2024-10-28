@@ -7,19 +7,12 @@
         @if (Auth::check())
         <!-- Barta Create Post Card -->
         <form action="{{ route('posts.store') }}" method="POST"
-            class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3">
+        enctype="multipart/form-data"
+        class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3">
             @csrf
             <!-- Create Post Card Top -->
             <div>
                 <div class="flex items-start /space-x-3/">
-                    <!-- User Avatar -->
-                    <!--            <div class="flex-shrink-0">-->
-                    <!--              <img-->
-                    <!--                class="h-10 w-10 rounded-full object-cover"-->
-                    <!--                src="https://avatars.githubusercontent.com/u/831997"-->
-                    <!--                alt="Ahmed Shamim" />-->
-                    <!--            </div>-->
-                    <!-- /User Avatar -->
 
                     <!-- Content -->
                     <div class="text-gray-700 font-normal w-full">
@@ -31,7 +24,12 @@
 
                 </div>
             </div>
-
+            <!-- Post Picture -->
+                <div>
+                    <div class="mt-2">
+                        <input type="file" name="post_picture" id="post_picture"  class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" required>
+                    </div>
+                </div>
             <!-- Create Post Card Bottom -->
             <div>
                 <!-- Card Bottom Action Buttons -->
