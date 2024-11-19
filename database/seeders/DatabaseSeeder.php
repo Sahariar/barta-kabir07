@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create()->each(function ($user) {
             $user->posts()->createMany(
-                Post::factory(2)->make()->toArray()
+                Post::factory(12)->make()->toArray()
             );
         });
     }
